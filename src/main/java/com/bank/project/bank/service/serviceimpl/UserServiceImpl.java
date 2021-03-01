@@ -17,24 +17,20 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User create(User user) {
+    public User save(User user) {
         return userDao.save(user);
-    }
-
-    @Override
-    public User update(User user) {
-        return userDao.save(user);
-    }
-
-    @Override
-    public User get(Long id) {
-        return userDao.getOne(id);
     }
 
     @Override
     public User findByPhoneNumber(String phoneNumber) {
         return userDao.findByPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new DataProcessingException("Can't get user by phone number"));
+    }
+
+    @Override
+    public User getById(Long id) {
+        return userDao.getById(id)
+                .orElseThrow(() -> new DataProcessingException("Can't get by user by Id" + id));
     }
 
     @Override

@@ -17,13 +17,13 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role add(Role role) {
+    public Role save(Role role) {
         return roleDao.save(role);
     }
 
     @Override
     public Role getByRoleName(String name) {
-        return roleDao.getByRoleName(name)
+        return roleDao.getByRoleName(Role.RoleName.valueOf(name))
                 .orElseThrow(() -> new DataProcessingException("Can't get role by name " + name));
     }
 }
